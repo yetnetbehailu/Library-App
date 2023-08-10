@@ -1,4 +1,8 @@
 /* Global styles */
+
+/*Google fonts imported*/
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&family=Crimson+Text");
+
 body{
     background-color: #62317ca3;
 }
