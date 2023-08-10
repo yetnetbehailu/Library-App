@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Book } from 'src/app/models/book.model';
+import { BooksService } from 'src/app/services/books.service';
 
 @Component({
   selector: 'app-create-book',
@@ -18,15 +20,21 @@ export class CreateBookComponent implements OnInit {
     imageUrl: ''
   };
 
-  constructor() {}
+  // Inject the CreateBook service which will communicate with corresponding .net api app
+  constructor(private BookService: BooksService, private router: Router) {}
 
   ngOnInit(): void {
   
   }
 
-  // Populates the createBookRequest variable
+  // Populates the createBookRequest variable passing the request to the service
   createBook(){
-    console.log(this.createBookRequest);
+    this.BookService.createBook(this.createBookRequest)
+    .subscribe({
+      next:(book)=> {
+        this.router.navigate(['']);
+      }
+    });
   }
 
 }

@@ -16,4 +16,10 @@ export class BooksService {
   getAllBooks():Observable<Book[]>{
     return this.http.get<Book[]>(this.baseApiUrl + '/api/books');
   }
+
+  createBook(createBookRequest: Book): Observable<Book>{
+    createBookRequest.bookId= 0;
+    return this.http.post<Book>(this.baseApiUrl + '/api/books', createBookRequest);
+  }
+
 }
