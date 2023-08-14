@@ -30,4 +30,8 @@ export class BooksService {
   updateBook(bookId:number, updateBookRequest:Book):Observable<Book>{
     return this.http.put<Book>(this.baseApiUrl + '/api/books/' + bookId, updateBookRequest)
   }
+
+  deleteBook(bookId:number):Observable<Book>{
+    return this.http.delete<Book>(this.baseApiUrl + '/api/books/' + bookId ); 
+  }
 }
