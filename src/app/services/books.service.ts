@@ -13,6 +13,7 @@ export class BooksService {
 
   constructor(private http: HttpClient) { }
 
+  // Api service connection methods
   getAllBooks():Observable<Book[]>{
     return this.http.get<Book[]>(this.baseApiUrl + '/api/books');
   }
@@ -22,4 +23,11 @@ export class BooksService {
     return this.http.post<Book>(this.baseApiUrl + '/api/books', createBookRequest);
   }
 
+  getBook(bookId:number):Observable<Book>{
+    return this.http.get<Book>(this.baseApiUrl + '/api/books/' + bookId);
+  }
+
+  updateBook(bookId:number, updateBookRequest:Book):Observable<Book>{
+    return this.http.put<Book>(this.baseApiUrl + '/api/books/' + bookId, updateBookRequest)
+  }
 }
