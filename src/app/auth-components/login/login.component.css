@@ -38,6 +38,11 @@
     color:#100016f2;
 }
 
+.form-control.error {
+    border: 1px solid red;
+    color: red;
+}
+
 /* ________________ Media Queries ______________ */
 
 /* Medium screens */

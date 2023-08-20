@@ -2,22 +2,24 @@
     <div class="row">
         <div class="col-10 offset-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4 register-form">
             <h1 class="form-title">Register</h1>
-            <form class="form-content">
-                <div class="mb-3 mt-3 d-flex">
+            <form [formGroup]="registerForm" class="form-content">
+                <div class="mb-1 mt-3 d-flex">
                     <i class="fa-solid fa-user fa-sm auth-icon"></i>
-                    <input type="text" class="form-control" id="username" placeholder="Username"
-                    name="username"> 
+                    <input formControlName="username" type="text" class="form-control" [class.error]="registerForm.controls['username'].dirty && registerForm.hasError('required','username')" id="username" placeholder="Username"
+                    minlength="2" required> 
                 </div>
-                <div class="mb-2 d-flex">
+                <small *ngIf="registerForm.controls['username'].dirty && registerForm.hasError('required','username')" class="text-danger">Please enter a valid username</small> 
+                <div class="mb-1 mt-3 d-flex">
                     <i class="fa-solid fa-lock fa-sm auth-icon"></i>
-                    <input type="text" class="form-control" id="password" placeholder="Password" 
-                    name="password">
+                    <input formControlName="password" type="text" class="form-control" [class.error]="registerForm.controls['password'].dirty && registerForm.hasError('required','password')" id="password" placeholder="Password" 
+                    minlength="6" required>
                 </div>
-                <div class="mb-3 text-muted">Already have an account? 
+                <small *ngIf="registerForm.controls['password'].dirty && registerForm.hasError('required','password')" class="text-danger">Please enter a valid password</small>
+                <div class="mb-3 mt-1 text-muted">Already have an account? 
                     <a routerLink="/login">Login</a>
                 </div>
                 <div class="text-center mb-1">
-                    <button type="submit" class="btn register-btn">Register</button>
+                    <button (click)="onRegister()" type="submit" class="btn register-btn">Register</button>
                 </div>
             </form>
         </div>
